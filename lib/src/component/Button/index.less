@@ -1,0 +1,102 @@
+@import '../../common/constant.less';
+
+.renderStyle(@index) when (@index <= length(@theme)) {
+  @selfTheme: extract(@theme, @index);
+  @selfButtonFontSize: extract(@buttonFontSize, @index);
+  @selfButtonBorderWidth: extract(@buttonBorderWidth, @index);
+  @selfButtonBorderstyle: extract(@buttonBorderstyle, @index);
+  @selfButtonBorderColor: extract(@buttonBorderColor, @index);
+  @selfCommonButtonColor: extract(@commonButtonColor, @index);
+  @selfCommonButtonHoverBgc: extract(@commonButtonHoverBgc, @index);
+  @selfSearchButtonBgc: extract(@searchButtonBgc, @index);
+  @selfSearchButtonBorderColor: extract(@searchButtonBorderColor, @index);
+  @selfSearchButtonColor: extract(@searchButtonColor, @index);
+  @selfSearchButtonHoverBgc: extract(@searchButtonHoverBgc, @index);
+  @selfLoadingBgc: extract(@loadingBgc, @index);
+  .@{selfTheme}-button {
+    color: @selfCommonButtonColor;
+    font-size: @selfButtonFontSize;
+    height: @buttonHeight;
+    line-height: @buttonLineHeight;
+    padding: @buttonPadding;
+    border: @selfButtonBorderColor @selfButtonBorderWidth @selfButtonBorderstyle;
+    border-radius: @buttonBorderRadius;
+    cursor: pointer;
+    transition: all .3s;
+    &:not(.@{selfTheme}-disabled-hover):hover {
+      background-color: @selfCommonButtonHoverBgc;
+    }
+    & + .@{selfTheme}-button {
+      margin-left: 10px;
+    }
+  }
+  .@{selfTheme}-common-button {
+    color: @selfCommonButtonColor;
+  }
+  .@{selfTheme}-search-button {
+    background-color: @selfSearchButtonBgc;
+    border-color: @selfSearchButtonBorderColor;
+    color: @selfSearchButtonColor;
+    &:not(.@{selfTheme}-disabled-hover):hover {
+      opacity: @searchButtonHoverOpcity;
+      background-color: @selfSearchButtonHoverBgc;
+    }
+  }
+  .@{selfTheme}-disabled-button {
+    cursor: not-allowed;
+    // &:hover {
+    //   background-color: inherit;
+    //   opacity: inherit;
+    // }
+  }
+  .@{selfTheme}-loading-button {
+    cursor: default;
+    position: relative;
+    &::after {
+      content: ' ';
+      position: absolute;
+      // width: 100%;
+      // height: 100%;
+      right: -1px;
+      left: -1px;
+      bottom: -1px;
+      top: -1px;
+      background-color: @selfLoadingBgc;
+      opacity: @loadingOpcity;
+    }
+    &::before {
+      content: ' ';
+      width: @selfButtonFontSize;
+      height: @selfButtonFontSize;
+      border-bottom: 1px solid @selfCommonButtonColor;
+      display: inline-block;
+      margin-right: 10px;
+      border-radius: 50%;
+      animation: loadingIcon 1s linear infinite;
+    }
+    &.@{selfTheme}-search-button {
+      &::before {
+        border-bottom-color: @selfSearchButtonColor;
+      }
+    }
+  }
+  .@{selfTheme}-link-button {
+    color: @selfCommonButtonColor;
+    cursor: pointer;
+  }
+  .renderStyle(@index+1)
+}
+.renderStyle(1);
+
+@keyframes loadingIcon {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+
+  }
+}

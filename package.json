@@ -1,0 +1,52 @@
+{
+  "name": "@avairain/test-btt",
+  "version": "1.0.2",
+  "description": "",
+  "main": "lib/index.js",
+  "repository": "avairain/test",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open development",
+    "build": "webpack --mode production",
+    "compile": "webpack --config webpack.config.pre.js",
+    "deploy": "gh-pages -d example/dist",
+    "publish-demo": "npm run build && npm run deploy"
+  },
+  "author": "avairain",
+  "keywords": [
+    "react",
+    "demo"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/plugin-transform-react-display-name": "^7.12.13",
+    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "@babel/plugin-transform-react-jsx-self": "^7.12.13",
+    "@babel/plugin-transform-react-jsx-source": "^7.12.13",
+    "@babel/preset-env": "^7.13.0",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^6.0.0",
+    "css-loader": "^5.0.2",
+    "gh-pages": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^4.1.1",
+    "less-loader": "^5.0.0",
+    "postcss-loader": "^3.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.2.2",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
