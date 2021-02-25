@@ -1,11 +1,19 @@
-import { useContext } from 'react'
-import { IStore, store } from '../component/CurrentProvider'
+import { IStore } from '../component/CurrentProvider'
 
-export const useStore =  (key?: keyof IStore) => {
-  const s = useContext(store)
-  if (key) {
-    return s[key]
+let store = {} as IStore
+
+export const useStore = () => {
+  const set = (obj: IStore) => {
+    store = obj
   }
-  return s
+  const get = (key?: keyof IStore) => {
+    if (key) {
+      return store[key]
+    }
+    return store
+  }
+  return {
+    set,
+    get
+  }
 }
-

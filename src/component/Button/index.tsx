@@ -1,7 +1,6 @@
 import React from 'react'
-import { useStore, useThemePrefix } from '../../hooks'
+import { useLocale, useThemePrefix } from '../../hooks'
 import buttonStyle from './index.less'
-console.log('%c 🌯 buttonStyle: ', 'font-size:20px;background-color: #2EAFB0;color:#fff;', buttonStyle);
 
 interface IBaseButton extends GingKooComponent {
   /**
@@ -34,7 +33,6 @@ interface ILinkButton extends GingKooComponent {
  * @param param0 按钮
  */
 const Button: React.FC<ILinkButton | IBaseButton> = (props) => {
-  console.log('%c 🥡 props: ', 'font-size:20px;background-color: #93C0A4;color:#fff;', props);
   const {
     type = 'common',
     children,
@@ -45,6 +43,7 @@ const Button: React.FC<ILinkButton | IBaseButton> = (props) => {
   } = props as IBaseButton
   const { href, target } = props as ILinkButton
   const currentStyle = useThemePrefix(buttonStyle)
+  const locale = useLocale()
   let className = `${currentStyle.button} ${currentStyle[`${type}-button`]}`
   if (disabled) {
     className = `${className} ${currentStyle['disabled-button']} ${currentStyle['disabled-hover']}`
@@ -76,6 +75,7 @@ const Button: React.FC<ILinkButton | IBaseButton> = (props) => {
       style={style}
       onClick={ clickButton }>
       {children}
+      { locale.Button }
     </button>
   )
 }

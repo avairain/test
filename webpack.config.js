@@ -2,7 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(__dirname, "./example/src/index.html"),
-  filename: "./index.html"
+  filename: "./index.html",
+  minify: false
 });
 
 module.exports = {
@@ -15,7 +16,12 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheCompression: false
+          }
+        },
         exclude: /node_modules/
       },
       {

@@ -1,16 +1,19 @@
 {
   "name": "@avairain/test-btt",
-  "version": "1.0.2",
+  "version": "1.0.8",
   "description": "",
-  "main": "lib/index.js",
+  "main": "lib/dist/bundle.js",
+  "types": "lib/src/global.d.ts",
   "repository": "avairain/test",
+  "files": ["lib", "package.json", "README.md"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open development",
+    "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "compile": "webpack --config webpack.config.pre.js",
-    "deploy": "gh-pages -d example/dist",
-    "publish-demo": "npm run build && npm run deploy"
+    "compile": "webpack --config webpack.config.pre.js --mode production",
+    "deploy": "gh-pages -d lib",
+    "publish-demo": "npm run build && npm run deploy",
+    "push-npm": "npm publish --access=public"
   },
   "author": "avairain",
   "keywords": [
@@ -48,5 +51,8 @@
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "@avairain/test-btt": "^1.0.7"
   }
 }

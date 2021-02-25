@@ -1,22 +1,24 @@
 const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
-  template: path.join(__dirname, "./example/src/index.html"),
-  filename: "./index.html"
-});
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, "./src/index.tsx"),
   output: {
     path: path.join(__dirname, "/lib/dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    library: '@avairain/test-btt',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheCompression: false
+          }
+        },
         exclude: /node_modules/
       },
       {
@@ -82,9 +84,11 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: path.join(__dirname, "./src/component"),  to: path.join(__dirname, "./lib") + '/src/component' },
-        { from: path.join(__dirname, "./src/hooks"),  to: path.join(__dirname, "./lib") + '/src/hooks' },
-        { from: path.join(__dirname, "./src/common"),  to: path.join(__dirname, "./lib") + '/src/common' },
+        // { from: path.join(__dirname, "./src/component"),  to: path.join(__dirname, "./lib") + '/src/component' },
+        // { from: path.join(__dirname, "./src/hooks"),  to: path.join(__dirname, "./lib") + '/src/hooks' },
+        // { from: path.join(__dirname, "./src/common"),  to: path.join(__dirname, "./lib") + '/src/common' },
+        { from: path.join(__dirname, "./src"),  to: path.join(__dirname, "./lib") + '/src' },
+        { from: path.join(__dirname, "./README.md"),  to: path.join(__dirname, "./lib") + '/README.md' },
       ]
     }), 
   ],
